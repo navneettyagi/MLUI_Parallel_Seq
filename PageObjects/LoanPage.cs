@@ -94,5 +94,9 @@ namespace MLAutoFramework.PageObjects
         public static By BtnClosePreQualifiedProduct_dialog = By.Id("ctl00_Buttons_closeButton");
 
         public static By RevolvingAccountPreQualifiedProduct = By.XPath("//table[@id='tblRevolving']/tbody/tr/td[1]");
+
+        public static By LoanAppNumber = By.Id("pre_sb_LoanNumber");
+
+        public static By LetterDocs_Lnk = By.Id("pre_lab_lbtnLetters");        
     }
 }

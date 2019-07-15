@@ -166,16 +166,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportsFeature.feature</DependentUpon>
     </Compile>
+    <Compile Include="MLSmoke\Features\SearchBy_Feature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchBy_Feature.feature</DependentUpon>
+    </Compile>
     <Compile Include="MLSmoke\Steps\LoanTestingSteps.cs" />
     <Compile Include="MLSmoke\Steps\ReportsSteps.cs" />
+    <Compile Include="MLSmoke\Steps\SearchBy_FeatureSteps.cs" />
     <Compile Include="PageObjects\AddPdfPage.cs" />
     <Compile Include="PageObjects\CommentsPage.cs" />
     <Compile Include="PageObjects\CreditCardPage.cs" />
     <Compile Include="PageObjects\CustomAppQueuesPage.cs" />
     <Compile Include="PageObjects\DocumentUploadLink_Page.cs" />
     <Compile Include="PageObjects\FileShare_Page.cs" />
-    <Compile Include="PageObjects\HE_EasyApplication_Page.cs" />
-    <Compile Include="PageObjects\HE_HMDAInformation_Page.cs" />
+    <Compile Include="PageObjects\HEEasyApplicationPage.cs" />
+    <Compile Include="PageObjects\HEHMDAInformationPage.cs" />
     <Compile Include="PageObjects\HomeEquityPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoanPage.cs" />
@@ -224,6 +230,10 @@
     <None Include="MLSmoke\Features\ReportsFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ReportsFeature.feature.cs</LastGenOutput>
+    </None>
+    <None Include="MLSmoke\Features\SearchBy_Feature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SearchBy_Feature.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

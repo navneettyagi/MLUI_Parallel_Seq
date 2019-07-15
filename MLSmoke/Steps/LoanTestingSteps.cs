@@ -56,7 +56,7 @@ namespace MLAutoFramework
         public void WhenUserFilledAllTheInformationAndSavedTheApplication()
         {
             IWebElement element;
-            //Thread.Sleep(2000);
+            Thread.Sleep(2000);
             //_driver.WaitForObjectAvaialble(WebDriverExtension.Type.Id, RequestedCreditLimitTextField);
             _driver.WaitForPageLoad();
             _driver.FindElement(LoanPage.Requested_Credit_Limit_TextField).Clear();
@@ -119,7 +119,7 @@ namespace MLAutoFramework
             _driver.WaitForPageLoad();
             _driver.HoverAndClick(_driver.FindElement(HomePage.New_App_Focus), _driver.FindElement(HomePage.Credit_Card_Focus));
             _driver.WaitForPageLoad();
-            Thread.Sleep(10000);
+            //Thread.Sleep(10000);
             test.Log(Status.Info, "User navigated to credit card app *Page " + _driver.Title);
         }
 

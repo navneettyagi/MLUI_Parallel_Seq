@@ -21,7 +21,7 @@ namespace MLAutoFramework.Base
 
             if (element.Count > 0)
             {
-                Assert.IsTrue(driver.FindElement(LoginPage.MFLQuestions_lblLogin).GetText().Equals(userName, StringComparison.CurrentCultureIgnoreCase));
+                //Assert.IsTrue(driver.FindElement(LoginPage.MFLQuestions_lblLogin).GetText().Equals(userName, StringComparison.CurrentCultureIgnoreCase));
                 driver.FindElement(LoginPage.MFLQuestions_Answer1).EnterText(answer1);
                 driver.FindElement(LoginPage.MFLQuestions_Answer2).EnterText(answer2);
                 driver.FindElement(LoginPage.MFLQuestions_RegisterComputer_Yes).Click();

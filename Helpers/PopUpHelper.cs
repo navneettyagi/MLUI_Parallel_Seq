@@ -72,17 +72,25 @@ namespace MLAutoFramework.Helpers
         //This will verify whether alert text is same as expected
         public static void AlertTextVerify(this IWebDriver driver, IWebElement element, string text)
         {
-            element.Click();
-            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 30));
-            IAlert alert = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
-            if (alert != null)
+            try
             {
-                driver.SwitchTo().Alert();
-                Thread.Sleep(2000);
-                //Console.WriteLine("Text: " + alert.Text);
-                Assert.IsTrue(alert.Text.Contains(text));
-                alert.Accept();
+                element.Click();
+                var wait = new WebDriverWait(driver, new TimeSpan(0, 0, 30));
+                IAlert alert = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+                if (alert != null)
+                {
+                    driver.SwitchTo().Alert();
+                    Thread.Sleep(2000);
+                    //Console.WriteLine("Text: " + alert.Text);
+                    Assert.IsTrue(alert.Text.Contains(text));
+                    alert.Accept();
+                }
             }
+            catch (Exception ex)
+            {
+                LogHelper.LogException(ex);
+            }
+
 
         }
 

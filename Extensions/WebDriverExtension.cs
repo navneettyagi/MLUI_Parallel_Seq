@@ -13,7 +13,7 @@ namespace MLAutoFramework.Extensions
 
         public static void WaitForPageLoad(this IWebDriver driver)
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             int waitTime = 180;
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
 
@@ -190,6 +190,12 @@ namespace MLAutoFramework.Extensions
         internal static object ExecuteJS(this IWebDriver driver, string script)
         {
             return ((IJavaScriptExecutor)driver).ExecuteScript(script);
+        }
+
+
+        public static void ExtraWait(this IWebDriver driver)
+        {
+            Thread.Sleep(5000);
         }
     }
 }

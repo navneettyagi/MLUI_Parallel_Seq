@@ -18,20 +18,20 @@ namespace MLAutoFramework.MLSmoke.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Underwriting")]
-    public partial class UnderwritingFeature
+    [NUnit.Framework.DescriptionAttribute("SearchBy_Feature")]
+    public partial class SearchBy_FeatureFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Underwriting.feature"
+#line 1 "SearchBy_Feature.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Underwriting", "\tDescription: This feature will test Underwriting page functionality.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SearchBy_Feature", "\tDescription: This feature will test the Search Page functionality", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,48 +64,43 @@ namespace MLAutoFramework.MLSmoke.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify the functionality of Ordering credit with valid SSN")]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with valid APP number")]
         [NUnit.Framework.CategoryAttribute("smoke")]
-        public virtual void VerifyTheFunctionalityOfOrderingCreditWithValidSSN()
+        public virtual void VerifyTheLoadingOfAPPWithValidAPPNumber()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the functionality of Ordering credit with valid SSN", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with valid APP number", new string[] {
                         "smoke"});
 #line 5
 this.ScenarioSetup(scenarioInfo);
 #line 6
   testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-  testRunner.When("User selects Vehicle from New App menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-  testRunner.And("User fills applicant form with valid data and click on Pull Credit and Save butto" +
-                    "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("User selects the Loan APP Number from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
-  testRunner.And("User clicks on View Credit link from navigation panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("User enters valid APP number and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
-  testRunner.Then("Credit Report values should be displayed in the report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("Same APP number should be displayed in the loaded Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify that NA is not displaying in Underwirting information")]
-        public virtual void VerifyThatNAIsNotDisplayingInUnderwirtingInformation()
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with invalid APP number")]
+        public virtual void VerifyTheLoadingOfAPPWithInvalidAPPNumber()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify that NA is not displaying in Underwirting information", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with invalid APP number", ((string[])(null)));
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
   testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
-  testRunner.When("User selects Vehicle from New App menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When("User selects the Loan APP Number from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
-  testRunner.And("User fills applicant form with valid data and click on Pull Credit and Save butto" +
-                    "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("User enters invalid APP number and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
-  testRunner.And("User clicks on Accept button of 36 mo NEW EXAMPLE loan", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
-  testRunner.Then("Scroll the page down and Verify that NA is not displaying in Underwriting Informa" +
-                    "tion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("Pop up should be displayed as No Results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

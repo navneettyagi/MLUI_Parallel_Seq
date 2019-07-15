@@ -73,6 +73,7 @@ namespace MLAutoFramework.Steps
         [Given(@"User selected Pre-built Credit Score reports")]
         public void GivenUserSelectedPre_BuiltCreditScoreReports()
         {
+            _driver.WaitForPageLoad();
             _driver.FindElement(ReportsPage.Credit_Score_Radio_Btn).Click();
             _driver.WaitForPageLoad();
             test.Log(Status.Info, "User selected Pre-built credit score reports *Page " + _driver.Title);
@@ -231,6 +232,7 @@ namespace MLAutoFramework.Steps
             _driver.FindElement(ReportsPage.Report_Type_Ddn).SelectDropDown("Custom");
             _driver.WaitForPageLoad();
             _driver.FindElement(ReportsPage.Custom_Report_Manage_Btn).Click();
+            _driver.ExtraWait();
             _driver.WaitForPageLoad();
             _driver.FindElement(ReportsPage.add_NewCustomReport_Button).Click();
             _driver.WaitForPageLoad();
@@ -248,7 +250,7 @@ namespace MLAutoFramework.Steps
             action.MoveToElement(_driver.FindElement(ReportsPage.approved_Amount)).Click().Build().Perform();
             test.Log(Status.Info, "User selected approved amount value  *Page " + _driver.Title);
             _driver.WaitForPageLoad();
-            _driver.FindElement(ReportsPage.btnRunReport).Click();
+            _driver.FindElement(ReportsPage.btnRunReport).SendKeys(Keys.Enter);
             _driver.WaitForPageLoad();
             _driver.SwitchTo().Frame(0);
             _driver.WaitForPageLoad();
@@ -296,8 +298,8 @@ namespace MLAutoFramework.Steps
             test.Log(Status.Info, "User verified credit score reports *Page " + _driver.Title);
             for (int i=0; i<creditScores.Count; i++)
             {
-                if (creditScores[i].GetText().Equals("NA")){
-                    Console.WriteLine("Credit Score is dispalying NA");
+                if (creditScores[i].GetText().Equals("NA"))
+                {
                     Assert.IsTrue(!creditScores[i].GetText().Equals("NA"));
                 }
             }
