@@ -237,6 +237,7 @@ namespace MLAutoFramework.Steps
             test.Log(Status.Info, "User clicked on new custom report button *Page " + _driver.Title);
             string main_window = "";
             main_window = WindowHelper.switchToChildWindow(_driver);
+            _driver.WaitForPageLoad();
             action = new Actions(_driver);
             _driver.FindElement(ReportsPage.textBox_Report_Title).EnterText(customReportTitle);
             test.Log(Status.Info, "User entered custom report title *Page " + _driver.Title);
