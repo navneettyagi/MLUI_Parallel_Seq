@@ -320,7 +320,6 @@ namespace MLAutoFramework.Base
             {
                 ConfigReader.SetFrameworkSettings();
             }
-
             string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
             string finalpth = pth.Substring(0, pth.LastIndexOf("bin")) + Settings.TestDataPath + testScripName + ".xlsx";
             string testDatafileName = new Uri(finalpth).LocalPath;
