@@ -316,7 +316,14 @@ namespace MLAutoFramework.Base
         //Populate Excel data in Data Table
         public void PopulateExcelData(string testScripName)
         {
-            string testDatafileName = Settings.TestDataPath + testScripName + ".xlsx";
+            if (Settings.TestDataPath == null)
+            {
+                ConfigReader.SetFrameworkSettings();
+            }
+
+            string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            string finalpth = pth.Substring(0, pth.LastIndexOf("bin")) + Settings.TestDataPath + testScripName + ".xlsx";
+            string testDatafileName = new Uri(finalpth).LocalPath;
             ExcelHelper.PopulateInCollection(testDatafileName);
         }
 

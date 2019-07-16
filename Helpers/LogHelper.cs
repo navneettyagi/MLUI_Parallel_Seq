@@ -18,10 +18,9 @@ namespace MLAutoFramework.Helpers
             {
                 ConfigReader.SetFrameworkSettings();
             }
-            //string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-            //pth.Substring(0, pth.LastIndexOf("bin"))
-            string dir = Settings.LogPath;
-            // string dir = @"C:\MLUI\MAIN\Test\MLAnywhereAutoTest\Logs\";
+            string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            string finalpth = pth.Substring(0, pth.LastIndexOf("bin")) + Settings.LogPath;
+            string dir = new Uri(finalpth).LocalPath;
             if (Directory.Exists(dir))
             {
                 _streamw = File.AppendText(dir + TestName + "_" + _logFileName + ".log");
@@ -45,6 +44,9 @@ namespace MLAutoFramework.Helpers
 
         public static void LogException(Exception exception)
         {
+            string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            string finalpth = pth.Substring(0, pth.LastIndexOf("bin")) + Settings.ExceptionFilePath;
+            string localpath = new Uri(finalpth).LocalPath;
             ExceptionLogType exceptionLogType;
             //MLException MLException = new MLException("AutomationException:" + exception.Message, exception);
             Enum.TryParse<ExceptionLogType>(Settings.ExceptionDestinationType.ToString(), out exceptionLogType);
