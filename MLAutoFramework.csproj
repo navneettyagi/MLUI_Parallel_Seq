@@ -90,7 +90,6 @@
     </Reference>
     <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Protractor, Version=0.12.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Protractor.0.12.0\lib\net40\Protractor.dll</HintPath>
@@ -157,6 +156,21 @@
     <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Helpers\PopUpHelper.cs" />
     <Compile Include="Helpers\WindowHelper.cs" />
+    <Compile Include="MLSmoke\Features\LoanTestingFeature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoanTestingFeature.feature</DependentUpon>
+    </Compile>
+    <Compile Include="MLSmoke\Features\ReportsFeature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportsFeature.feature</DependentUpon>
+    </Compile>
+    <Compile Include="MLSmoke\Features\SearchBy_Feature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchBy_Feature.feature</DependentUpon>
+    </Compile>
     <Compile Include="MLSmoke\Steps\LoanTestingSteps.cs" />
     <Compile Include="MLSmoke\Steps\ReportsSteps.cs" />
     <Compile Include="MLSmoke\Steps\SearchBy_FeatureSteps.cs" />
