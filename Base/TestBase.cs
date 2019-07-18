@@ -15,6 +15,7 @@ using System.Linq;
 using NUnit.Framework;
 using MLAutoFramework.Extensions;
 using TechTalk.SpecFlow;
+using OpenQA.Selenium.Remote;
 
 namespace MLAutoFramework.Base
 {
@@ -43,6 +44,11 @@ namespace MLAutoFramework.Base
                     //Please follow above instructions above to setup IE 
 
                     _driver = new InternetExplorerDriver();
+                    //InternetExplorerOptions options = new InternetExplorerOptions();
+                    //options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
+                    //options.PlatformName = "windows";
+                    //_driver = new RemoteWebDriver(new Uri("http://localhost:5557/wd/hub"), options.ToCapabilities(), TimeSpan.FromSeconds(600));
+
                     break;
 
                 case "FIREFOX":
