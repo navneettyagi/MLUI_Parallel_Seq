@@ -18,5 +18,7 @@ namespace MLAutoFramework.PageObjects
         public static By AppType_VL_Chckbx = By.Id("ctl00_bc_rptLoanTypeCheckboxes_ctl05_chkLoanType");
 
         public static By Save_Btn = By.Id("ctl00_Buttons_cmdSave");
+
+        public static By Close_Btn = By.Id("ctl00_Buttons_cmdClose");
     }
 }

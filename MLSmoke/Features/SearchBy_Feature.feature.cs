@@ -96,11 +96,261 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
   testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
-     testRunner.When("User selects the Loan APP Number from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
-  testRunner.And("User enters invalid APP number and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("User selects the Loan APP Number from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
+  testRunner.And("User enters invalid APP number and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
      testRunner.Then("Pop up should be displayed as No Results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with valid first name")]
+        public virtual void VerifyTheLoadingOfAPPWithValidFirstName()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with valid first name", ((string[])(null)));
+#line 19
+this.ScenarioSetup(scenarioInfo);
+#line 20
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+  testRunner.And("User selects the First Name from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 23
+  testRunner.And("User enters valid first name and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+     testRunner.Then("Same first name APP should be displayed in the name column of the results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with invalid first name")]
+        public virtual void VerifyTheLoadingOfAPPWithInvalidFirstName()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with invalid first name", ((string[])(null)));
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 29
+  testRunner.And("User selects the First Name from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+  testRunner.And("User enters invalid first name and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+     testRunner.Then("Pop up should be displayed as No Results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with valid last name")]
+        public virtual void VerifyTheLoadingOfAPPWithValidLastName()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with valid last name", ((string[])(null)));
+#line 33
+this.ScenarioSetup(scenarioInfo);
+#line 34
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 35
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+  testRunner.And("User selects the Last Name from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+  testRunner.And("User enters valid last name and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+     testRunner.Then("Same last name APP should be displayed in the name column of the results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with invalid last name")]
+        public virtual void VerifyTheLoadingOfAPPWithInvalidLastName()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with invalid last name", ((string[])(null)));
+#line 40
+this.ScenarioSetup(scenarioInfo);
+#line 41
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 42
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 43
+  testRunner.And("User selects the Last Name from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+  testRunner.And("User enters invalid last name and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+     testRunner.Then("Pop up should be displayed as No Results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with valid SSN")]
+        public virtual void VerifyTheLoadingOfAPPWithValidSSN()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with valid SSN", ((string[])(null)));
+#line 47
+this.ScenarioSetup(scenarioInfo);
+#line 48
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 49
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 50
+  testRunner.And("User selects the SSN from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 51
+  testRunner.And("User enters valid SSN and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
+     testRunner.Then("Same SSN APP should be displayed in the Last 4 SSN column of the results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with invalid SSN")]
+        public virtual void VerifyTheLoadingOfAPPWithInvalidSSN()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with invalid SSN", ((string[])(null)));
+#line 54
+this.ScenarioSetup(scenarioInfo);
+#line 55
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 56
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 57
+  testRunner.And("User selects the SSN from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 58
+  testRunner.And("User enters invalid SSN and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+     testRunner.Then("Pop up should be displayed as No Results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with valid Member Number")]
+        public virtual void VerifyTheLoadingOfAPPWithValidMemberNumber()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with valid Member Number", ((string[])(null)));
+#line 61
+this.ScenarioSetup(scenarioInfo);
+#line 62
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 63
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 64
+  testRunner.And("User selects the Member Number from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 65
+  testRunner.And("User enters valid Member Number and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 66
+     testRunner.Then("Same Member Number APP should be displayed in the Member column of the results fo" +
+                    "und", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with valid Universal Loan ID")]
+        public virtual void VerifyTheLoadingOfAPPWithValidUniversalLoanID()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with valid Universal Loan ID", ((string[])(null)));
+#line 68
+this.ScenarioSetup(scenarioInfo);
+#line 69
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 70
+     testRunner.When("User created a new Home Equity application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 71
+  testRunner.And("User selects the Universal Loan ID from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 72
+  testRunner.And("User enters valid Universal ID and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 73
+  testRunner.And("User navigates to HDMA information page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 74
+     testRunner.Then("Same Universal loan ID should be displayed in the universal Loan identifier text " +
+                    "box", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with invalid Member Number")]
+        public virtual void VerifyTheLoadingOfAPPWithInvalidMemberNumber()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with invalid Member Number", ((string[])(null)));
+#line 76
+this.ScenarioSetup(scenarioInfo);
+#line 77
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 78
+     testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 79
+  testRunner.And("User selects the Member Number from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 80
+  testRunner.And("User enters invalid Member Number and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+     testRunner.Then("Pop up should be displayed as No Results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of APP with invalid Universal Loan ID")]
+        public virtual void VerifyTheLoadingOfAPPWithInvalidUniversalLoanID()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of APP with invalid Universal Loan ID", ((string[])(null)));
+#line 83
+this.ScenarioSetup(scenarioInfo);
+#line 84
+  testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 85
+     testRunner.When("User created a new Home Equity application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 86
+  testRunner.And("User selects the Universal Loan ID from the drop down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 87
+  testRunner.And("User enters invalid Universal Loan ID and Click Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 88
+     testRunner.Then("Pop up should be displayed as No Results found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the loading of the APP")]
+        public virtual void VerifyTheLoadingOfTheAPP()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the loading of the APP", ((string[])(null)));
+#line 90
+this.ScenarioSetup(scenarioInfo);
+#line 91
+ testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 92
+ testRunner.When("User Created a new Vehicle Loan APP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 93
+ testRunner.And("In Action ? column click the View APP icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.Then("APP should be displayed with all the Headings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify the version of the lender site")]
+        public virtual void VerifyTheVersionOfTheLenderSite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify the version of the lender site", ((string[])(null)));
+#line 96
+this.ScenarioSetup(scenarioInfo);
+#line 97
+ testRunner.Given("User Login successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 98
+    testRunner.Then("Current version should be displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

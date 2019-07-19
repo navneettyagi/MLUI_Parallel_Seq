@@ -167,6 +167,15 @@ namespace MLAutoFramework.Extensions
             }
         }
 
+        public static void WaitForElementPresentAndEnabled(this IWebDriver driver, By locator, int secondsToWait)
+        {
+            new WebDriverWait(driver, new TimeSpan(0, 0, secondsToWait))
+               .Until(d => d.FindElement(locator).Enabled
+                   && d.FindElement(locator).Displayed
+             );
+        }
+
+
         //Get current URL
         public static string GetCurrentURL(this IWebDriver driver)
         {

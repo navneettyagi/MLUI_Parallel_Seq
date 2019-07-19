@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+
 using MLAutoFramework.Base;
 using MLAutoFramework.Extensions;
 using MLAutoFramework.Helpers;
@@ -18,23 +19,7 @@ namespace MLAutoFramework.Steps
 {
     [Binding]
     public class SearchBy_FeatureSteps : TestBase
-    {
-        private IWebDriver _driver;
-        private new ExtentTest test;
-        public SearchBy_FeatureSteps(IWebDriver driver, ExtentTest test)
-        {
-            if (Settings.Parallelizable == "Yes")
-            {
-                _driver = driver;
-                this.test = test;
-            }
-            else if (Settings.Parallelizable == "No")
-            {
-                _driver = TestBase.driver;
-                this.test = test;
-            }
-        }
-
+    {        
         static int j;
         static string vehicleLoanAppNumber;
         static string firstName;
@@ -42,7 +27,9 @@ namespace MLAutoFramework.Steps
         static string memberNumber;
         static string universalLoanID;
 
-        static string application = "notexist";
+        //test data
+        static string vehicleApplication = "notexist";
+        static string homeequityApplication = "notexist";
         string expectedHeadings = "Loan Info,Custom Questions,Comments,Borrower Info,Liabilities,Assets,Underwriting Info,Disbursements,";
         string invalidMemberNumber = "0000";
         string invalidAppNumnber = "0000";
@@ -51,16 +38,16 @@ namespace MLAutoFramework.Steps
         string invalidFirstName = "INVALID";
         string invalidLastName = "INVALID";
         string invalidUniversalLoanID = "000000";
-        string noResultFound = "No result found";
+        string noResultFound = "No results found";
         string nameColumn = "Name";
         string sSNColumn = "SSN";
         string memberNumberColoumn = "Member";
-        string vehileApplicationStatus = "notexist";
+        string vehicleApplicationStatus = "notexist";
         string homeequityApplicationStatus = "notexist";
+        string currentVersionExpected = "System v2015 Build 20190713 0351 R214481 PV2019.07.14.528";
 
 
         //Home Equity variables
-
         string SSN = "000000001";
         string purpose = "Home Equity Loan";
         string reason = "PURCHASE";
@@ -78,8 +65,24 @@ namespace MLAutoFramework.Steps
         string loanTerm = "36";
         string purposeTypeText = "Purchase";
         string customQuestionText = "Yes";
+        string main_window = "";
 
+        private IWebDriver _driver;
+        private new ExtentTest test;
+        public SearchBy_FeatureSteps(IWebDriver driver, ExtentTest test)
+        {
+            if (Settings.Parallelizable == "Yes")
+            {
+                _driver = driver;
+                this.test = test;
+            }
+            else if (Settings.Parallelizable == "No")
+            {
+                _driver = TestBase.driver;
+                this.test = test;
+            }
 
+        }
 
 
         [Given(@"User Login successfully")]
@@ -93,54 +96,60 @@ namespace MLAutoFramework.Steps
         [When(@"User Created a new Vehicle Loan APP")]
         public void CreateNewVehicleLoanAPP()
         {
-            if (application.Equals(vehileApplicationStatus))
+            if (vehicleApplication.Equals(vehicleApplicationStatus))
             {
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomePage.NewAPP_Focus, 60);
                 _driver.HoverAndClick(_driver.FindElement(HomePage.NewAPP_Focus), _driver.FindElement(HomePage.NewVehicle_Focus));
-                _driver.isDialogPresent();
-                _driver.ExtraWait();
                 _driver.WaitForPageLoad();
-                vehicleLoanAppNumber = _driver.FindElement(LoanPage.Sb_LoanNumber).GetText();
+                _driver.isDialogPresent();
+                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(LoanPage.LoanAppNumber, 60);
+                vehicleLoanAppNumber = _driver.FindElement(LoanPage.LoanAppNumber).GetText();
+                _driver.FindElement(LoanPage.Amount_Requested_Txt).EnterText(amountRequested);
                 _driver.FindElement(LoanPage.Amount_Requested_Txt).EnterText(amountRequested);
                 _driver.FindElement(LoanPage.Loan_Term_Txt).EnterText(loanTerm);
                 _driver.FindElement(LoanPage.Purpose_Type_Ddn).SelectDropDown(purposeTypeText);
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(LoanPage.SSN_Txt, 60);
                 _driver.FindElement(LoanPage.SSN_Txt).EnterText(validSsn);
                 _driver.FindElement(LoanPage.FName_Txt).Click();
                 _driver.WaitForPageLoad();
                 firstName = _driver.FindElement(LoanPage.FName_Txt).GetAttributeValue("value");
                 lastName = _driver.FindElement(LoanPage.LName_TextField).GetAttributeValue("value");
                 memberNumber = _driver.FindElement(LoanPage.MemberNumber_TextField).GetAttributeValue("value");
+                _driver.WaitForElementPresentAndEnabled(LoanPage.Custom_Question_CheckBox, 60);
                 _driver.FindElement(LoanPage.Custom_Question_CheckBox).Click();
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(LoanPage.Custom_Question_Ddn_First, 60);
                 _driver.FindElement(LoanPage.Custom_Question_Ddn_First).SelectDropDown(customQuestionText);
                 _driver.FindElement(LoanPage.Custom_Question_Ddn_Second).SelectDropDown(customQuestionText);
                 _driver.FindElement(LoanPage.Pull_Credit_Btn).Click();
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomePage.Main_Focus, 60);
                 _driver.FindElement(HomePage.Main_Focus).Click();
-               // _driver.WaitForPageLoad();
                 _driver.isDialogPresent();
                 _driver.WaitForPageLoad();
-                application = "exist";
+                vehicleApplication = "exist";
                 test.Log(Status.Info, "Vehicle loan application created " + _driver.Title);
             }
-
         }
 
 
         [When(@"User selects the Loan APP Number from the drop down")]
         public void SelectTheLoanAPPNumber()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.SearchBy_Ddn, 60);
             _driver.FindElement(HomePage.SearchBy_Ddn).SelectDropDown("Loan App Number");
-            _driver.WaitForPageLoad();
             test.Log(Status.Info, "Loan APP Number selected from the dropdown " + _driver.Title);
         }
 
 
         [When(@"User enters valid APP number and Click Search")]
-        public void EntersValidAPPNumbe()
+        public void EntersValidAPPNumber()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(vehicleLoanAppNumber);
+            _driver.WaitForElementPresentAndEnabled(HomePage.Search_Btn, 60);
             _driver.FindElement(HomePage.Search_Btn).Click();
             _driver.WaitForPageLoad();
             test.Log(Status.Info, "Valid App number entered " + _driver.Title);
@@ -150,6 +159,7 @@ namespace MLAutoFramework.Steps
         [When(@"User enters invalid APP number and Click Search")]
         public void EnterInvalidAPPNumber()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(invalidAppNumnber);
             test.Log(Status.Info, "Invalid APP Number Entered " + _driver.Title);
         }
@@ -157,6 +167,7 @@ namespace MLAutoFramework.Steps
         [When(@"User selects the First Name from the drop down")]
         public void SelectTheFirstName()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.SearchBy_Ddn).SelectDropDown("First Name");
             test.Log(Status.Info, "First Name selected from the dropdown " + _driver.Title);
         }
@@ -165,7 +176,9 @@ namespace MLAutoFramework.Steps
         [When(@"User enters valid first name and Click Search")]
         public void EnterValidFirstName()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(firstName);
+            _driver.WaitForElementPresentAndEnabled(HomePage.Search_Btn, 60);
             _driver.FindElement(HomePage.Search_Btn).Click();
             _driver.WaitForPageLoad();
             test.Log(Status.Info, "Valid first name entered " + _driver.Title);
@@ -175,6 +188,7 @@ namespace MLAutoFramework.Steps
         [When(@"User enters invalid first name and Click Search")]
         public void EnterInvalidFirstName()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(invalidFirstName);
             test.Log(Status.Info, "Invalid first name Entered " + _driver.Title);
         }
@@ -183,6 +197,7 @@ namespace MLAutoFramework.Steps
         [When(@"User selects the Last Name from the drop down")]
         public void SelectTheLastName()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.SearchBy_Ddn, 60);
             _driver.FindElement(HomePage.SearchBy_Ddn).SelectDropDown("Last Name");
             test.Log(Status.Info, "Last Name selected from the dropdown " + _driver.Title);
         }
@@ -191,7 +206,9 @@ namespace MLAutoFramework.Steps
         [When(@"User enters valid last name and Click Search")]
         public void EnterValidLasstName()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(lastName);
+            _driver.WaitForElementPresentAndEnabled(HomePage.Search_Btn, 60);
             _driver.FindElement(HomePage.Search_Btn).Click();
             _driver.WaitForPageLoad();
             test.Log(Status.Info, "Valid last name entered " + _driver.Title);
@@ -201,6 +218,7 @@ namespace MLAutoFramework.Steps
         [When(@"User enters invalid last name and Click Search")]
         public void EnterInvalidLastNam()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(invalidLastName);
             test.Log(Status.Info, "Invalid last name Entered " + _driver.Title);
         }
@@ -209,10 +227,8 @@ namespace MLAutoFramework.Steps
         [Then(@"Same APP number should be displayed in the loaded Application")]
         public void VerifyAPPNumber()
         {
-            _driver.WaitForPageLoad();
-            //Fail test intentially
+            _driver.WaitForElementPresentAndEnabled(LoanPage.LoanAppNumber, 60);
             _driver.FindElement(LoanPage.LoanAppNumber).AssertTagText(vehicleLoanAppNumber);
-            _driver.WaitForPageLoad();
             test.Log(Status.Info, "Application loaded with the same app number " + _driver.Title);
         }
 
@@ -220,8 +236,8 @@ namespace MLAutoFramework.Steps
         [Then(@"Pop up should be displayed as No Results found")]
         public void VerifyPopUp()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.Search_Btn, 60);
             _driver.AlertTextVerify(_driver.FindElement(HomePage.Search_Btn), noResultFound);
-            _driver.WaitForPageLoad();
             test.Log(Status.Info, "Pop up verified with no results found  " + _driver.Title);
         }
 
@@ -229,16 +245,17 @@ namespace MLAutoFramework.Steps
         [Then(@"Same first name APP should be displayed in the name column of the results found")]
         public void VerifyFirstName()
         {
-            IList<IWebElement> MyWorkingQueueRowslist = _driver.FindElements(HomePage.MyWorkingQueue_Rows);
-            IList<IWebElement> APPcolumns = _driver.FindElements(HomePage.App_Column);
-            for (j = 1; j <= APPcolumns.Count; j++)
+            _driver.WaitForElementPresentAndEnabled(HomePage.MyWorkingQueue_Rows, 60);
+            IList<IWebElement> myWorkingQueueRowslist = _driver.FindElements(HomePage.MyWorkingQueue_Rows);
+            IList<IWebElement> appColumns = _driver.FindElements(HomePage.App_Column);
+            for (j = 1; j <= appColumns.Count; j++)
             {
 
                 string columName = _driver.FindElement(By.XPath(".//table[@id='ctl00_MainContent_dg']//tr[1]/td[" + j + "]")).GetText();
                 if (columName.Contains(nameColumn))
                     break;
             }
-            for (int i = 2; i <= MyWorkingQueueRowslist.Count; i++)
+            for (int i = 2; i <= myWorkingQueueRowslist.Count; i++)
             {
                 string firstname = _driver.FindElement(By.XPath(".//table[@id='ctl00_MainContent_dg']//tr[" + i + "]/td[" + j + "]/a")).GetText();
                 Assert.IsTrue(firstname.EndsWith(firstName));
@@ -250,16 +267,17 @@ namespace MLAutoFramework.Steps
         [Then(@"Same last name APP should be displayed in the name column of the results found")]
         public void VerifyLastName()
         {
-            IList<IWebElement> MyWorkingQueueRowslist = _driver.FindElements(HomePage.MyWorkingQueue_Rows);
-            IList<IWebElement> APPcolumns = _driver.FindElements(HomePage.App_Column);
-            for (j = 1; j <= APPcolumns.Count; j++)
+            _driver.WaitForElementPresentAndEnabled(HomePage.MyWorkingQueue_Rows, 60);
+            IList<IWebElement> myWorkingQueueRowslist = _driver.FindElements(HomePage.MyWorkingQueue_Rows);
+            IList<IWebElement> appColumns = _driver.FindElements(HomePage.App_Column);
+            for (j = 1; j <= appColumns.Count; j++)
             {
                 string columName = _driver.FindElement(By.XPath(".//table[@id='ctl00_MainContent_dg']//tr[1]/td[" + j + "]")).GetText();
                 if (columName.Contains(nameColumn))
                     break;
             }
 
-            for (int i = 2; i <= MyWorkingQueueRowslist.Count; i++)
+            for (int i = 2; i <= myWorkingQueueRowslist.Count; i++)
             {
                 String lastname = _driver.FindElement(By.XPath(".//table[@id='ctl00_MainContent_dg']//tr[" + i + "]/td[" + j + "]")).GetText();
                 Assert.IsTrue(lastname.StartsWith(lastName));
@@ -271,6 +289,7 @@ namespace MLAutoFramework.Steps
         [When(@"User selects the SSN from the drop down")]
         public void SelectSSN()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.SearchBy_Ddn, 60);
             _driver.FindElement(HomePage.SearchBy_Ddn).SelectDropDown("SSN");
             test.Log(Status.Info, "SSN selected from the drop down " + _driver.Title);
         }
@@ -279,7 +298,9 @@ namespace MLAutoFramework.Steps
         [When(@"User enters valid SSN and Click Search")]
         public void EnterValidSSN()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(validSsn);
+            _driver.WaitForElementPresentAndEnabled(HomePage.Search_Btn, 60);
             _driver.FindElement(HomePage.Search_Btn).Click();
             test.Log(Status.Info, "Entered valid SSN " + _driver.Title);
         }
@@ -289,15 +310,16 @@ namespace MLAutoFramework.Steps
         public void VerifySSN()
 
         {
-            IList<IWebElement> MyWorkingQueueRowslist = _driver.FindElements(HomePage.MyWorkingQueue_Rows);
-            IList<IWebElement> APPcolumns = _driver.FindElements(HomePage.App_Column);
-            for (j = 1; j <= APPcolumns.Count; j++)
+            _driver.WaitForElementPresentAndEnabled(HomePage.MyWorkingQueue_Rows, 60);
+            IList<IWebElement> myWorkingQueueRowslist = _driver.FindElements(HomePage.MyWorkingQueue_Rows);
+            IList<IWebElement> appColumns = _driver.FindElements(HomePage.App_Column);
+            for (j = 1; j <= appColumns.Count; j++)
             {
                 string columName = _driver.FindElement(By.XPath(".//table[@id='ctl00_MainContent_dg']//tr[1]/td[" + j + "]")).GetText();
                 if (columName.Contains(sSNColumn))
                     break;
             }
-            for (int i = 2; i <= MyWorkingQueueRowslist.Count; i++)
+            for (int i = 2; i <= myWorkingQueueRowslist.Count; i++)
             {
                 string ssn = _driver.FindElement(By.XPath(".//table[@id='ctl00_MainContent_dg']//tr[" + i + "]/td[" + j + "]")).GetText();
                 int ssnLength = validSsn.Length;
@@ -317,6 +339,8 @@ namespace MLAutoFramework.Steps
         [When(@"User enters invalid SSN and Click Search")]
         public void EnterInvalidSSN()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
+
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(invalidSsn);
             test.Log(Status.Info, "Invalid SSN entered " + _driver.Title);
         }
@@ -325,6 +349,8 @@ namespace MLAutoFramework.Steps
         [When(@"User selects the Member Number from the drop down")]
         public void SelectMemberNumber()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.SearchBy_Ddn, 60);
+
             _driver.FindElement(HomePage.SearchBy_Ddn).SelectDropDown("Member Number");
             test.Log(Status.Info, "Member number selected from the drop down " + _driver.Title);
         }
@@ -333,8 +359,9 @@ namespace MLAutoFramework.Steps
         [When(@"User enters valid Member Number and Click Search")]
         public void EnterValidMemberNumber()
         {
-            _driver.WaitForPageLoad();
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(memberNumber);
+            _driver.WaitForElementPresentAndEnabled(HomePage.Search_Btn, 60);
             _driver.FindElement(HomePage.Search_Btn).Click();
             _driver.WaitForPageLoad();
             test.Log(Status.Info, "Valid member number entered " + _driver.Title);
@@ -344,15 +371,16 @@ namespace MLAutoFramework.Steps
         [Then(@"Same Member Number APP should be displayed in the Member column of the results found")]
         public void VerifyMemberNumber()
         {
-            IList<IWebElement> MyWorkingQueueRowslist = _driver.FindElements(HomePage.MyWorkingQueue_Rows);
-            IList<IWebElement> APPcolumns = _driver.FindElements(HomePage.App_Column);
-            for (j = 1; j <= APPcolumns.Count; j++)
+            _driver.WaitForElementPresentAndEnabled(HomePage.MyWorkingQueue_Rows, 60);
+            IList<IWebElement> myWorkingQueueRowslist = _driver.FindElements(HomePage.MyWorkingQueue_Rows);
+            IList<IWebElement> appColumns = _driver.FindElements(HomePage.App_Column);
+            for (j = 1; j <= appColumns.Count; j++)
             {
                 string columName = _driver.FindElement(By.XPath(".//table[@id='ctl00_MainContent_dg']//tr[1]/td[" + j + "]")).GetText();
                 if (columName.Contains(memberNumberColoumn))
                     break;
             }
-            for (int i = 2; i <= MyWorkingQueueRowslist.Count; i++)
+            for (int i = 2; i <= myWorkingQueueRowslist.Count; i++)
             {
                 string ssn = _driver.FindElement(By.XPath(".//table[@id='ctl00_MainContent_dg']//tr[" + i + "]/td[" + j + "]")).GetText();
                 Assert.IsTrue(ssn.StartsWith(memberNumber));
@@ -364,6 +392,7 @@ namespace MLAutoFramework.Steps
         [When(@"User enters invalid Member Number and Click Search")]
         public void EnterInvalidMemberNumber()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(invalidMemberNumber);
             test.Log(Status.Info, "Invalid Member number entered  " + _driver.Title);
         }
@@ -372,6 +401,7 @@ namespace MLAutoFramework.Steps
         [When(@"User selects the Universal Loan ID from the drop down")]
         public void SelectUniversalLoanID()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.SearchBy_Ddn, 60);
             _driver.FindElement(HomePage.SearchBy_Ddn).SelectDropDown("Universal Loan ID");
             test.Log(Status.Info, "Universal Loan ID selected from the drop down " + _driver.Title);
         }
@@ -380,11 +410,9 @@ namespace MLAutoFramework.Steps
         [When(@"User enters valid Universal ID and Click Search")]
         public void EnterValidUniversalID()
         {
-            // Thread.Sleep(90000);
-            //  Thread.Sleep(20000);
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(universalLoanID);
-            // Thread.Sleep(90000);
-            // Thread.Sleep(20000);
+            _driver.WaitForElementPresentAndEnabled(HomePage.Search_Btn, 60);
             _driver.FindElement(HomePage.Search_Btn).Click();
             test.Log(Status.Info, "Valid universal loan Id entered " + _driver.Title);
         }
@@ -393,19 +421,19 @@ namespace MLAutoFramework.Steps
         [When(@"User navigates to HDMA information page")]
         public void NavigateMDAInfo()
         {
-            _driver.WaitForPageLoad();
+            //_driver.WaitForPageLoad();
+            Thread.Sleep(10000);
+            _driver.WaitForElementPresentAndEnabled(HEEasyApplicationPage.HMDAInfo_Lnk, 60);
             _driver.FindElement(HEEasyApplicationPage.HMDAInfo_Lnk).Click();
             _driver.WaitForPageLoad();
             test.Log(Status.Info, "Navigated to HDMA info page " + _driver.Title);
         }
 
 
-
-
-
         [Then(@"Same Universal loan ID should be displayed in the universal Loan identifier text box")]
         public void VerifyUniversalLoanID()
         {
+            _driver.WaitForElementPresentAndEnabled(HEHMDAIformationPgae.UniversalLoanIdentifier, 60);
             Assert.AreEqual(_driver.FindElement(HEHMDAIformationPgae.UniversalLoanIdentifier).GetAttributeValue("value"), universalLoanID);
             test.Log(Status.Info, "Entered universal loan id app displayed " + _driver.Title);
         }
@@ -414,15 +442,16 @@ namespace MLAutoFramework.Steps
         [When(@"User enters invalid Universal Loan ID and Click Search")]
         public void EntenInvalidUniversalLoanID()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.KeySearch_Txt, 60);
             _driver.FindElement(HomePage.KeySearch_Txt).EnterText(invalidUniversalLoanID);
             test.Log(Status.Info, "Invalid Universal loan Id entered " + _driver.Title);
-
         }
 
 
         [When(@"In Action \? column click the View APP icon")]
         public void AppIcon()
         {
+            _driver.WaitForElementPresentAndEnabled(HomePage.ViewAPP_Img, 60);
             _driver.FindElement(HomePage.ViewAPP_Img).Click();
             _driver.WaitForPageLoad();
             test.Log(Status.Info, "View app icon clicked " + _driver.Title);
@@ -432,9 +461,9 @@ namespace MLAutoFramework.Steps
         [Then(@"APP should be displayed with all the Headings")]
         public void VerifyHeadings()
         {
-            string main_window = "";
             main_window = WindowHelper.switchToChildWindow(_driver);
             _driver.WaitForPageLoad();
+            _driver.WaitForElementPresentAndEnabled(LoanViewPage.Headings_Lnk, 60);
             IList<IWebElement> Headings_Lnk = _driver.FindElements(LoanViewPage.Headings_Lnk);
             StringBuilder anchorHeadings = new StringBuilder();
             foreach (IWebElement head in Headings_Lnk)
@@ -452,75 +481,93 @@ namespace MLAutoFramework.Steps
         [When(@"User created a new Home Equity application")]
         public void CreateANewHomeEquityApp()
         {
-            if (application.Equals(homeequityApplicationStatus))
+            if (homeequityApplication.Equals(homeequityApplicationStatus))
             {
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomePage.NewAPP_Focus, 60);
                 _driver.HoverAndClick(_driver.FindElement(HomePage.NewAPP_Focus), _driver.FindElement(HomePage.HomeEquity_Focus));
                 _driver.WaitForPageLoad();
                 IWebElement element = _driver.FindElement(LoanPage.SSN_Txt);
                 ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
+                _driver.WaitForElementPresentAndEnabled(LoanPage.SSN_Txt, 60);
                 _driver.FindElement(LoanPage.SSN_Txt).EnterText(SSN);
+                _driver.WaitForElementPresentAndEnabled(LoanPage.FName_Txt, 60);
                 _driver.FindElement(LoanPage.FName_Txt).Click();
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Purpose_Ddn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Purpose_Ddn).SelectDropDown(purpose);
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Reason_Ddn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Reason_Ddn).SelectDropDown(reason);
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Rate_Type_Ddn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Rate_Type_Ddn).SelectDropDown(rateType);
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Amt_Requested_Txt, 60);
                 _driver.FindElement(HomeEquityPage.HE_Amt_Requested_Txt).EnterText(amtRequested);
-                _driver.WaitForPageLoad();
+
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Est_Property_Value_Txt, 60);
                 _driver.FindElement(HomeEquityPage.HE_Est_Property_Value_Txt).EnterText(estPropertyValue);
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Value_Source_Ddn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Value_Source_Ddn).SelectDropDown(valueSource);
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Interview_Method_Ddn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Interview_Method_Ddn).SelectDropDown(interviewMethod);
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Occupancy_Status_Ddn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Occupancy_Status_Ddn).SelectDropDown(occupancyStatus);
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Property_Type_Ddn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Property_Type_Ddn).SelectDropDown(propertyType);
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_State_Ddn, 60);
                 _driver.FindElement(HomeEquityPage.HE_State_Ddn).SelectDropDown(state);
                 _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Ethnicity_Radio_Btn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Ethnicity_Radio_Btn).Click();
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Sex_Radio_Btn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Sex_Radio_Btn).Click();
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Race_Radio_Btn, 60);
                 _driver.FindElement(HomeEquityPage.HE_Race_Radio_Btn).Click();
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Sex_Male_Select_Box, 60);
                 _driver.FindElement(HomeEquityPage.HE_Sex_Male_Select_Box).Click();
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Race_American_Indian_Select_Box, 60);
                 _driver.FindElement(HomeEquityPage.HE_Race_American_Indian_Select_Box).Click();
-                _driver.WaitForPageLoad();
+                _driver.WaitForElementPresentAndEnabled(HomeEquityPage.HE_Ethnicity_Not_Hispanic_Select_Box, 60);
                 _driver.FindElement(HomeEquityPage.HE_Ethnicity_Not_Hispanic_Select_Box).Click();
-                _driver.WaitForPageLoad();
                 IWebElement pullCredit = _driver.FindElement(LoanPage.Pull_Credit_Btn);
                 ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", pullCredit);
                 _driver.FindElement(LoanPage.Pull_Credit_Btn).Click();
-                _driver.WaitForPageLoad();
-                _driver.ExtraWait();
+               // _driver.WaitForPageLoad();
+                Thread.Sleep(15000);
                 test.Log(Status.Info, "Home equity application created " + _driver.Title);
-
-                _driver.WaitForPageLoad();
+                // _driver.WaitForElementPresentAndEnabled(HEEasyApplicationPage.HMDAInfo_Lnk, 60);
                 _driver.FindElement(HEEasyApplicationPage.HMDAInfo_Lnk).Click();
                 _driver.WaitForPageLoad();
                 test.Log(Status.Info, "Navigated to HDMA info page " + _driver.Title);
-
+                _driver.WaitForElementPresentAndEnabled(HEHMDAIformationPgae.UniversalLoanIdentifier, 60);
                 universalLoanID = _driver.FindElement(HEHMDAIformationPgae.UniversalLoanIdentifier).GetAttributeValue("value");
-
-                Console.WriteLine(universalLoanID);
                 IWebElement ReviewAndSave_Btn = _driver.FindElement(HEHMDAIformationPgae.ReviewAndSave_Btn);
                 ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", ReviewAndSave_Btn);
                 ReviewAndSave_Btn.Click();
+                _driver.WaitForPageLoad();
                 IWebElement Main_Focus = _driver.FindElement(HomePage.Main_Focus);
                 ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", Main_Focus);
                 Main_Focus.Click();
                 _driver.isDialogPresent();
                 _driver.WaitForPageLoad();
-                application = "exist";
+                homeequityApplication = "exist";
                 test.Log(Status.Info, "Home equity app saved " + _driver.Title);
-
             }
         }
+
+
+        [Then(@"Current version should be displayed")]
+        public void VerifyCurrentVersion()
+        {
+            IWebElement CurrentVersion = _driver.FindElement(HomePage.CurrentVersion);
+            ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", CurrentVersion);
+            string currentVersionActual = CurrentVersion.GetText();
+            Assert.IsTrue(currentVersionExpected.Equals(currentVersionActual));
+
+        }
+
     }
 }

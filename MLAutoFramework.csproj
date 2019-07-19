@@ -156,6 +156,21 @@
     <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Helpers\PopUpHelper.cs" />
     <Compile Include="Helpers\WindowHelper.cs" />
+    <Compile Include="MLSmoke\Features\AppDataPreloading.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppDataPreloading.feature</DependentUpon>
+    </Compile>
+    <Compile Include="MLSmoke\Features\Documents_Feature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Documents_Feature.feature</DependentUpon>
+    </Compile>
+    <Compile Include="MLSmoke\Features\LoanQueuesFeature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoanQueuesFeature.feature</DependentUpon>
+    </Compile>
     <Compile Include="MLSmoke\Features\LoanTestingFeature.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -171,28 +186,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchBy_Feature.feature</DependentUpon>
     </Compile>
+    <Compile Include="MLSmoke\Steps\AppDataPreloadingSteps.cs" />
+    <Compile Include="MLSmoke\Steps\Documents_FeatureSteps.cs" />
+    <Compile Include="MLSmoke\Steps\LoanQueuesSteps.cs" />
     <Compile Include="MLSmoke\Steps\LoanTestingSteps.cs" />
     <Compile Include="MLSmoke\Steps\ReportsSteps.cs" />
     <Compile Include="MLSmoke\Steps\SearchBy_FeatureSteps.cs" />
     <Compile Include="PageObjects\AddPdfPage.cs" />
     <Compile Include="PageObjects\CommentsPage.cs" />
+    <Compile Include="PageObjects\ConfigureSitePage.cs" />
     <Compile Include="PageObjects\CreditCardPage.cs" />
     <Compile Include="PageObjects\CustomAppQueuesPage.cs" />
+    <Compile Include="PageObjects\DocumentUploadLinkPage.cs" />
     <Compile Include="PageObjects\DocumentUploadLink_Page.cs" />
+    <Compile Include="PageObjects\FileSharePage.cs" />
     <Compile Include="PageObjects\FileShare_Page.cs" />
     <Compile Include="PageObjects\HEEasyApplicationPage.cs" />
     <Compile Include="PageObjects\HEHMDAInformationPage.cs" />
     <Compile Include="PageObjects\HomeEquityPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
+    <Compile Include="PageObjects\LetterAndTemplatesPage.cs" />
     <Compile Include="PageObjects\LoanPage.cs" />
     <Compile Include="PageObjects\LoanViewPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
+    <Compile Include="PageObjects\ModuleConfigurationPage.cs" />
+    <Compile Include="PageObjects\PDFMapperPage.cs" />
+    <Compile Include="PageObjects\PrintPreviewPage.cs" />
     <Compile Include="PageObjects\PrintPreview_Page.cs" />
     <Compile Include="PageObjects\ReportsPage.cs" />
     <Compile Include="PageObjects\StatusPage.cs" />
     <Compile Include="PageObjects\Underwriting.cs" />
+    <Compile Include="PageObjects\UploadLoanDocumentPage.cs" />
     <Compile Include="PageObjects\UploadLoanDocument_Page.cs" />
     <Compile Include="PageObjects\VehiclePage.cs" />
+    <Compile Include="PageObjects\VELetterTemplatesPage.cs" />
     <Compile Include="PageObjects\VE_LetterTemplates_Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -223,6 +250,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="MLSmoke\Features\AppDataPreloading.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AppDataPreloading.feature.cs</LastGenOutput>
+    </None>
+    <None Include="MLSmoke\Features\Documents_Feature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Documents_Feature.feature.cs</LastGenOutput>
+    </None>
+    <None Include="MLSmoke\Features\LoanQueuesFeature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LoanQueuesFeature.feature.cs</LastGenOutput>
+    </None>
     <None Include="MLSmoke\Features\LoanTestingFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LoanTestingFeature.feature.cs</LastGenOutput>

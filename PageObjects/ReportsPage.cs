@@ -6,6 +6,8 @@ namespace MLAutoFramework.PageObjects
     {
         public static By Report_Type_Ddn = By.Id("ctl00_bc_ddlReportType");
 
+        public static string frame1 = "frame1";
+
         //Standard Report objects
         public static By Approved_Loans_Radio_Btn = By.Id("ctl00_bc_lstPrebuildReports_ctl01_rdo");
 

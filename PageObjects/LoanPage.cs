@@ -4,17 +4,9 @@ namespace MLAutoFramework.PageObjects
 {
     class LoanPage
     {
-        public static By App_Number_Txt = By.Id("pre_sb_LoanNumber");
+        public static By LoanAppNumber = By.Id("pre_sb_LoanNumber");
 
-        public static By MemberNumber_MemberN = By.Id("ali_MemberNumber_MemberN");
-
-        public static By TdMemberNumber_Title = By.Id("ali_tdMemberNumber_Title");
-
-        public static By Sb_LoanNumber = By.Id("pre_sb_LoanNumber");
-
-        public static By Sa_FName = By.Id("sa_FName");
-
-        public static By Sa_LName = By.Id("sa_LName");
+        public static By LetterDocs_Lnk = By.Id("pre_lab_lbtnLetters");
 
         public static By Loan_Status_DropDown = By.Id("pre_sb_ls_cboLoanStatus");
 
@@ -34,9 +26,17 @@ namespace MLAutoFramework.PageObjects
 
         public static By Custom_Question_WordOfMouth_SelectBox = By.Id("CQuest_rpt_ctl01_SingleCustomQuestion_chkAnswer_0");
 
-        public static By Comments_Link = By.LinkText("Comments"); 
+        public static By Comments_Link = By.LinkText("Comments");
 
         public static By Status_Lnk = By.LinkText("Status");
+                        
+        public static By TdMemberNumber_Title = By.Id("ali_tdMemberNumber_Title");
+
+        public static By Sa_FName = By.Id("sa_FName");
+
+        public static By Sa_LName = By.Id("sa_LName");
+
+      
 
         //Qualifying products page objects
 
@@ -95,8 +95,17 @@ namespace MLAutoFramework.PageObjects
 
         public static By RevolvingAccountPreQualifiedProduct = By.XPath("//table[@id='tblRevolving']/tbody/tr/td[1]");
 
-        public static By LoanAppNumber = By.Id("pre_sb_LoanNumber");
+        public static By Requested_Credit_Limit_Txt = By.Id("RequestedCreditLimit");
 
-        public static By LetterDocs_Lnk = By.Id("pre_lab_lbtnLetters");        
+        public static By AlertContainer1_alertContainer = By.Id("ali_AlertContainer1_alertContainer");
+
+        public static By SSN_AlertContainer1_alertContainer = By.Id("sa_AlertContainer1_alertContainer");
+
+        public static By Warning_icon = By.XPath(".//*[@src='/images/info_icon.png']");
+
+        public static By Alert_Table_message = By.ClassName("alert-container-table-message");
+
+        public static By MemberNumber_MemberN = By.Id("ali_MemberNumber_MemberN");
+
     }
 }
