@@ -100,7 +100,7 @@ namespace MLAutoFramework.Steps
                 _driver.isDialogPresent();
                 _driver.ExtraWait();
                 _driver.WaitForPageLoad();
-                vehicleLoanAppNumber = _driver.FindElement(LoanPage.Sb_LoanNumber).GetText();
+                vehicleLoanAppNumber = _driver.FindElement(LoanPage.LoanAppNumber).GetText();
                 _driver.FindElement(LoanPage.Amount_Requested_Txt).EnterText(amountRequested);
                 _driver.FindElement(LoanPage.Loan_Term_Txt).EnterText(loanTerm);
                 _driver.FindElement(LoanPage.Purpose_Type_Ddn).SelectDropDown(purposeTypeText);

@@ -156,23 +156,17 @@
     <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Helpers\PopUpHelper.cs" />
     <Compile Include="Helpers\WindowHelper.cs" />
-    <Compile Include="MLSmoke\Features\LoanTestingFeature.feature.cs">
+    <Compile Include="MLSmoke\Features\AppDataPreloading.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LoanTestingFeature.feature</DependentUpon>
-    </Compile>
-    <Compile Include="MLSmoke\Features\ReportsFeature.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReportsFeature.feature</DependentUpon>
+      <DependentUpon>AppDataPreloading.feature</DependentUpon>
     </Compile>
     <Compile Include="MLSmoke\Features\SearchBy_Feature.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchBy_Feature.feature</DependentUpon>
     </Compile>
-    <Compile Include="MLSmoke\Steps\LoanTestingSteps.cs" />
-    <Compile Include="MLSmoke\Steps\ReportsSteps.cs" />
+    <Compile Include="MLSmoke\Steps\AppDataPreloadingSteps.cs" />
     <Compile Include="MLSmoke\Steps\SearchBy_FeatureSteps.cs" />
     <Compile Include="PageObjects\AddPdfPage.cs" />
     <Compile Include="PageObjects\CommentsPage.cs" />
@@ -223,13 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="MLSmoke\Features\LoanTestingFeature.feature">
+    <None Include="MLSmoke\Features\AppDataPreloading.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>LoanTestingFeature.feature.cs</LastGenOutput>
-    </None>
-    <None Include="MLSmoke\Features\ReportsFeature.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ReportsFeature.feature.cs</LastGenOutput>
+      <LastGenOutput>AppDataPreloading.feature.cs</LastGenOutput>
     </None>
     <None Include="MLSmoke\Features\SearchBy_Feature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
